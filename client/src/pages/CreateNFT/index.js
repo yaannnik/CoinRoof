@@ -38,13 +38,14 @@ const CreateNFT = () => {
 
   async function createNFT(event) {
     event.preventDefault();
-    const { title, description } = formData;
+    const { title, description, price } = formData;
 
     console.log("title: " + title);
 
     const data = new FormData();
     data.append("name", title);
     data.append("description", description);
+    data.append("price", price);
 
     if(selectedFile){
       data.append('img', selectedFile);

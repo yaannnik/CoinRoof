@@ -78,7 +78,7 @@ const Item = () => {
   return (
     <div className={classes.pageItem}>
       {Object.keys(nft).length === 0 ? (
-        <div>...CARREGANDO</div>
+        <div>Loading...</div>
       ) : (
         <main>
           <header className={classes.pageHeader}>
