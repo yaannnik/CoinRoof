@@ -18,7 +18,7 @@ const Card = ({ tokenId, name, image, price, owner, isForSale }) => {
   const classes = useStyles();
   console.log("image: ", image);
   return (
-    <Link to={`/nft/${tokenId}`}>
+    <Link to={isForSale? `/nft/${tokenId}`: `/`}>
       <MuiCard className={classes.root}>
         <CardActionArea>
           <CardMedia
@@ -40,7 +40,8 @@ const Card = ({ tokenId, name, image, price, owner, isForSale }) => {
               <Chip
                 size="small"
                 disabled={true}
-                label="Selling"
+                color={isForSale? "success": "primary"}
+                label={isForSale? "Selling": "Disable"}  // disable not for sale items
                 className={classes.badge}
               />
             </div>
@@ -58,7 +59,7 @@ const Card = ({ tokenId, name, image, price, owner, isForSale }) => {
               align={"center"}
               className={classes.seller}
             >
-              {owner.slice(0, 7)}...{owner.slice(-4)}
+              owner: {owner.slice(0, 7)}...{owner.slice(-4)}
             </Typography>
           </CardContent>
         </CardActionArea>

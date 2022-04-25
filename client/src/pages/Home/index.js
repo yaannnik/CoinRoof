@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
@@ -36,9 +36,11 @@ const Home = () => {
   const classes = useStyles();
   const nft = useSelector((state) => state.allNft.nft);
   const dispatch = useDispatch();
+  const [itemsList, setitemsList] = useState([])  // TODO: state refresh
 
   useEffect(() => {
-    let itemsList = [];
+    let itemsListNew = [];
+    console.log("new img detected")
     const init = async () => {
       try {
         const web3 = await getWeb3();
@@ -70,7 +72,6 @@ const Home = () => {
           for (var tokenId = 1; tokenId <= totalSupply; tokenId++) {
             let item = await artTokenContract.methods.Items(tokenId).call();
             let owner = await artTokenContract.methods.ownerOf(tokenId).call();
-
             const response = await api
               .get(`/tokens/${tokenId}`)
               .catch((err) => {
@@ -78,7 +79,7 @@ const Home = () => {
               });
             console.log("response: ", response);
 
-            itemsList.push({
+            itemsListNew.push({
               name: response.data.name,
               description: response.data.description,
               image: response.data.image,
@@ -86,7 +87,7 @@ const Home = () => {
               creator: item.creator,
               owner: owner,
               uri: item.uri,
-              isForSale: false,
+              isForSale: item.creator !== accounts[0],  // cannot buy items from yourself
               saleId: null,
               price: response.data.price,
               isSold: null,
@@ -101,12 +102,12 @@ const Home = () => {
                 .activeItems(item.tokenId)
                 .call();
 
-              let itemListIndex = itemsList.findIndex(
+              let itemListIndex = itemsListNew.findIndex(
                 (i) => i.tokenId === item.tokenId
               );
 
-              itemsList[itemListIndex] = {
-                ...itemsList[itemListIndex],
+              itemsListNew[itemListIndex] = {
+                ...itemsListNew[itemListIndex],
                 isForSale: active,
                 saleId: item.id,
                 price: item.price,
@@ -118,7 +119,9 @@ const Home = () => {
           dispatch(setAccount(accounts[0]));
           dispatch(setTokenContract(artTokenContract));
           dispatch(setMarketContract(marketplaceContract));
-          dispatch(setNft(itemsList));
+          dispatch(setNft(itemsListNew));
+
+          setitemsList(itemsListNew);
         } catch (error) {
           console.error("Error", error);
           alert(
@@ -136,6 +139,7 @@ const Home = () => {
     };
     init();
   }, [dispatch]);
+  
 
   console.log("Nft :", nft);
 
