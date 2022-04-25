@@ -1,3 +1,6 @@
+const HDWalletProvider = require('@truffle/hdwallet-provider');
+const privateKey= require('./secrets.json').privateKey;
+
 module.exports = {
   contracts_build_directory: './client/src/contracts',
 
@@ -6,6 +9,14 @@ module.exports = {
       host: "127.0.0.1",     // Localhost (default: none)
       port: 8545,            // Standard Ethereum port (default: none)
       network_id: "*",       // Any network (default: none)
+    },
+    // if migrate to huygens
+    huygens: {
+      provider: () => new HDWalletProvider([privateKey], `http://18.182.45.18:8765/`),
+      network_id: 828,
+      confirmations: 10,
+      timeoutBlocks: 200,
+      skipDryRun: true,
     },
   },
 

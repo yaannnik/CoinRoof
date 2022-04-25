@@ -1,4 +1,4 @@
 cd client
 truffle migrate
-yarn
+# yarn
 yarn start
