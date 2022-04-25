@@ -8,6 +8,7 @@ const intialState = {
 };
 
 export const nftReducer = (state = intialState, { type, payload }) => {
+  
   switch (type) {
     case ActionTypes.SET_NFT:
       return { ...state, nft: payload };

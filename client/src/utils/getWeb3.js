@@ -10,6 +10,7 @@ const getWeb3 = () =>
         
         try {
           // Request account access if needed
+          console.log("request eth")
           await window.ethereum.request({ method: 'eth_requestAccounts' }); //return accounts
           // Accounts now exposed
           resolve(web3);
@@ -21,12 +22,14 @@ const getWeb3 = () =>
       // Legacy dapp browsers...
       else if (window.web3) {
         // Use Mist/MetaMask's provider.
+          console.log("request web3")
         const web3 = window.web3;
         console.log("Injected web3 detected.");
         resolve(web3);
       }
       // Fallback to localhost; use dev console port by default...
       else {
+        console.log("request local")
         const provider = new Web3.providers.HttpProvider(
           "http://127.0.0.1:8545"
         );
