@@ -23,3 +23,9 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+client/src/contracts/ArtMarketplace.json
+client/src/contracts/ArtToken.json
+client/src/contracts/Migrations.json
+
+server/routes/db.json
