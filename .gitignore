@@ -24,12 +24,10 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-client/src/contracts/Migrations.json
-client/src/contracts/ArtToken.json
-client/src/contracts/ArtMarketplace.json
+# /client/src/contracts/*.json
 
-server/routes/db.json
+# /server/routes/db.json
 
-server/imgs/*.png
-server/imgs/*.jpg
-server/imgs/*.jpeg
+/server/imgs/*.png
+/server/imgs/*.jpg
+/server/imgs/*.jpeg

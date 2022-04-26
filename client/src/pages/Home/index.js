@@ -45,6 +45,7 @@ const Home = () => {
       try {
         const web3 = await getWeb3();
         const accounts = await web3.eth.getAccounts();
+        const me = accounts[2]
 
         if (typeof accounts === undefined) {
           alert("Please login with Metamask!");
@@ -116,7 +117,7 @@ const Home = () => {
             }
           }
 
-          dispatch(setAccount(accounts[0]));
+          dispatch(setAccount(me));
           dispatch(setTokenContract(artTokenContract));
           dispatch(setMarketContract(marketplaceContract));
           dispatch(setNft(itemsListNew));
