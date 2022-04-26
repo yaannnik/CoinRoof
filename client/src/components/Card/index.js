@@ -18,7 +18,8 @@ const Card = ({ tokenId, name, image, price, owner, isForSale }) => {
   const classes = useStyles();
   console.log("image: ", image);
   return (
-    <Link to={isForSale? `/nft/${tokenId}`: `/`}>
+    // <Link to={isForSale? `/nft/${tokenId}`: `/`}>
+    <Link to={`/nft/${tokenId}`}>
       <MuiCard className={classes.root}>
         <CardActionArea>
           <CardMedia

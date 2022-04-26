@@ -51,12 +51,13 @@ const Item = () => {
 
       // const marketAddress = ArtMarketplace.networks[1337].address;
       // await artTokenContract.methods.approve(marketAddress, items[itemIdex].tokenId).send({from: accounts[0]});
-
+      
       const receipt = await marketplaceContract.methods
         .putItemForSale(id, price)
         .send({ gas: 210000, from: account });
       console.log(receipt);
     } catch (error) {
+      alert(id);
       console.error("Error, puting for sale: ", error);
       alert("Error while puting for sale!");
     }
@@ -64,11 +65,13 @@ const Item = () => {
 
   async function buy(saleId, price) {
     try {
+      alert(saleId);
       const receipt = await marketplaceContract.methods
         .buyItem(saleId)
         .send({ gas: 210000, value: price, from: account });
       console.log(receipt);
       const id = receipt.events.itemSold.id; ///saleId
+      // alert("Error while buying!");
     } catch (error) {
       console.error("Error, buying: ", error);
       alert("Error while buying!");
@@ -146,7 +149,7 @@ const Item = () => {
                     fullWidth
                     disabled
                   />
-                  {owner === account && !isForSale && (
+                  {owner === account && (
                     <Button
                       variant="contained"
                       color="primary"

@@ -87,13 +87,16 @@ const Home = () => {
               creator: item.creator,
               owner: owner,
               uri: item.uri,
-              isForSale: item.creator !== accounts[0],  // cannot buy items from yourself
+              // isForSale: item.creator !== accounts[1],  // cannot buy items from yourself
+              isForSale: true,  // cannot buy items from yourself
               saleId: null,
               price: response.data.price,
               isSold: null,
             });
           }
+          // alert(totalItemsForSale);
           if (totalItemsForSale > 0) {
+            // alert(saleId);
             for (var saleId = 0; saleId < totalItemsForSale; saleId++) {
               let item = await marketplaceContract.methods
                 .itemsForSale(saleId)
