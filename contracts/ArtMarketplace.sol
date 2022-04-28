@@ -52,6 +52,7 @@ contract ArtMarketplace {
       require(!activeItems[tokenId], "Item is already up for sale");
 
       uint256 newItemId = itemsForSale.length;
+      // uint256 newItemId = newId;
       itemsForSale.push(ItemForSale({
         id: newItemId,
         tokenId: tokenId,

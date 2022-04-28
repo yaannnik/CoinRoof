@@ -7,6 +7,10 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Web3 from "web3";
+import getWeb3 from "../../utils/getWeb3";
+import ArtToken from "../../contracts/ArtToken.json";
+import ArtMarketplace from "../../contracts/ArtMarketplace.json";
+import Address from "../../contracts/Address.json";
 
 import { selectedNft, removeSelectedNft } from "../../redux/actions/nftActions";
 
@@ -18,6 +22,9 @@ const Item = () => {
   const { nftId } = useParams();
   const marketplaceContract = useSelector(
     (state) => state.allNft.marketplaceContract
+  );
+  const artTokenContract = useSelector(
+    (state) => state.allNft.artTokenContract
   );
   const account = useSelector((state) => state.allNft.account);
   let nft = useSelector((state) => state.nft);
@@ -47,11 +54,31 @@ const Item = () => {
 
   async function putForSale(id, price) {
     try {
+      alert(id);
       // const itemIdex = getItemIndexBuyTokenId(id);
-
-      // const marketAddress = ArtMarketplace.networks[1337].address;
-      // await artTokenContract.methods.approve(marketAddress, items[itemIdex].tokenId).send({from: accounts[0]});
+      let itemList = ArtMarketplace.itemsForSale
+      const totalItemsForSale = await marketplaceContract.methods
+            .totalItemsForSale()
+            .call();
+      console.log(itemList)
+      if (totalItemsForSale > 0) {
+        console.log(itemList)
+      }
       
+      console.log("1");
+      const marketAddress = ArtMarketplace.networks[1337].address;
+      // console.log(marketAddress);
+      console.log("2");
+      const web3 = new Web3("http://localhost:8545")
+      console.log("3");
+      const networkId = await web3.eth.net.getId();
+      const contractAddress = ArtMarketplace.networks[networkId].address;
+      console.log(contractAddress);
+      await artTokenContract.methods.approve("0xA114CEfF7f9B8B55569E4B18ed837D0e1B4d01D6", id).send({from: account});
+      // await artTokenContract.methods.setApprovalForAll("0x1b826918842a944e06c631b714c88ed3d213fb30", id).send({from: account});
+      // console.log(account);
+      // let transaction = await artTokenContract.setApprovalForAll(marketAddress, true);
+      // await transaction.wait();
       const receipt = await marketplaceContract.methods
         .putItemForSale(id, price)
         .send({ gas: 210000, from: account });
@@ -63,7 +90,7 @@ const Item = () => {
     }
   }
 
-  async function buy(saleId, price) {
+  async function buy(saleId, price, tokenId) {
     try {
       alert(saleId);
       const receipt = await marketplaceContract.methods
@@ -72,6 +99,11 @@ const Item = () => {
       console.log(receipt);
       const id = receipt.events.itemSold.id; ///saleId
       // alert("Error while buying!");
+      console.log("1");
+      const marketAddress = ArtMarketplace.networks[1337].address;
+      console.log("2");
+      await artTokenContract.methods.setApprovalForAll(marketAddress, tokenId);
+      console.log("3");
     } catch (error) {
       console.error("Error, buying: ", error);
       alert("Error while buying!");
@@ -162,7 +194,7 @@ const Item = () => {
                     <Button
                       variant="contained"
                       color="primary"
-                      onClick={() => buy(saleId, price)}
+                      onClick={() => buy(saleId, price, tokenId)}
                     >
                       Buy
                     </Button>

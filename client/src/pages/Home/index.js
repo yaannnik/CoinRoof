@@ -45,7 +45,7 @@ const Home = () => {
       try {
         const web3 = await getWeb3();
         const accounts = await web3.eth.getAccounts();
-        const me = accounts[2]
+        // const me = accounts[1]
 
         if (typeof accounts === undefined) {
           alert("Please login with Metamask!");
@@ -69,7 +69,6 @@ const Home = () => {
           const totalItemsForSale = await marketplaceContract.methods
             .totalItemsForSale()
             .call();
-
           for (var tokenId = 1; tokenId <= totalSupply; tokenId++) {
             let item = await artTokenContract.methods.Items(tokenId).call();
             let owner = await artTokenContract.methods.ownerOf(tokenId).call();
@@ -95,9 +94,9 @@ const Home = () => {
               isSold: null,
             });
           }
-          // alert(totalItemsForSale);
+          alert(totalItemsForSale);
           if (totalItemsForSale > 0) {
-            // alert(saleId);
+            
             for (var saleId = 0; saleId < totalItemsForSale; saleId++) {
               let item = await marketplaceContract.methods
                 .itemsForSale(saleId)
@@ -109,7 +108,7 @@ const Home = () => {
               let itemListIndex = itemsListNew.findIndex(
                 (i) => i.tokenId === item.tokenId
               );
-
+              
               itemsListNew[itemListIndex] = {
                 ...itemsListNew[itemListIndex],
                 isForSale: active,
@@ -120,7 +119,7 @@ const Home = () => {
             }
           }
 
-          dispatch(setAccount(me));
+          dispatch(setAccount(accounts[0]));
           dispatch(setTokenContract(artTokenContract));
           dispatch(setMarketContract(marketplaceContract));
           dispatch(setNft(itemsListNew));
