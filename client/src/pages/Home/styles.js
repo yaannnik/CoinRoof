@@ -38,7 +38,7 @@ const useStyles = makeStyles({
       textTransform: 'none',
       fontSize: "1.2rem",
       fontWeight: "400",
-      background: '#3F51B5'
+      // background: '#3F51B5'
     }
 
   },
