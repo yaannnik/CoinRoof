@@ -74,7 +74,7 @@ const Item = () => {
       const networkId = await web3.eth.net.getId();
       const contractAddress = ArtMarketplace.networks[networkId].address;
       console.log(contractAddress);
-      await artTokenContract.methods.approve("0xA114CEfF7f9B8B55569E4B18ed837D0e1B4d01D6", id).send({from: account});
+      await artTokenContract.methods.approve(contractAddress, id).send({from: account});
       // await artTokenContract.methods.setApprovalForAll("0x1b826918842a944e06c631b714c88ed3d213fb30", id).send({from: account});
       // console.log(account);
       // let transaction = await artTokenContract.setApprovalForAll(marketAddress, true);
@@ -181,7 +181,7 @@ const Item = () => {
                     fullWidth
                     disabled
                   />
-                  {owner === account && (
+                  {owner === account && !isForSale && (
                     <Button
                       variant="contained"
                       color="primary"
@@ -190,6 +190,16 @@ const Item = () => {
                       Sell
                     </Button>
                   )}
+
+                  {owner === account && isForSale && (
+                    <Button
+                      variant="contained"
+                      color="Success"
+                    >
+                      You are selling this item!
+                    </Button>
+                  )}
+
                   {owner !== account && isForSale && (
                     <Button
                       variant="contained"
