@@ -66,7 +66,7 @@ const Item = () => {
       }
       
       console.log("1");
-      const marketAddress = ArtMarketplace.networks[1337].address;
+      // const marketAddress = ArtMarketplace.networks[1337].address;
       // console.log(marketAddress);
       console.log("2");
       const web3 = new Web3("http://localhost:8545")
@@ -99,11 +99,11 @@ const Item = () => {
       console.log(receipt);
       const id = receipt.events.itemSold.id; ///saleId
       // alert("Error while buying!");
-      console.log("1");
-      const marketAddress = ArtMarketplace.networks[1337].address;
-      console.log("2");
-      await artTokenContract.methods.setApprovalForAll(marketAddress, tokenId);
-      console.log("3");
+      // console.log("1");
+      // const marketAddress = ArtMarketplace.networks[1337].address;
+      // console.log("2");
+      // await artTokenContract.methods.setApprovalForAll(marketAddress, tokenId);
+      // console.log("3");
     } catch (error) {
       console.error("Error, buying: ", error);
       alert("Error while buying!");
