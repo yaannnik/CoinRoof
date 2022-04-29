@@ -39,9 +39,13 @@ const useStyles = makeStyles({
       fontSize: "1.2rem",
       fontWeight: "400",
       // background: '#3F51B5'
-    }
+    },
+'#artwork' :{
+  fontFamily: 'Trebuchet MS',
+},
 
   },
+  
   allNfts: {
     marginTop: "2rem",
     padding: "0 2rem",

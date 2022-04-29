@@ -34,7 +34,7 @@ import { useStyles } from "./styles.js";
 // import stones from "../../assets/arts/rentao_-22-10-.jpg";
 // import wale from "../../assets/arts/luzhan-liu-1-1500.jpg";
 // import comic from "../../assets/arts/daniel-taylor-black-and-white-2019-2.jpg";
-import galerie from "../../assets/galerie.svg";
+// import galerie from "../../assets/galerie.svg";
 
 
 const Home = () => {
@@ -176,8 +176,11 @@ const Home = () => {
               <ImgList phase={1}/>
           </Grid>
           <Grid item xs={6} className={classes.main}>
-            <img src={galerie} alt="galerie" />
-            <Typography>A decentralized NFT marketplace where you can expose your art.</Typography>
+            {/* <img src={galerie} alt="galerie" /> */}
+            <Typography variant="h3" id="artwork">Artwork Market</Typography>
+            <Typography>A decentralized NFT marketplace where you can expose your art.
+              You can buy and sell Exclusive NFTs simply with a few clicks.</Typography>
+            <Typography>Own it, show it, buy it!</Typography>
             <Link to="/create-nft">
               {/* <Button variant="contained" color="primary" disableElevation>
                 Mint your art
