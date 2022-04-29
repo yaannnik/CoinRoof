@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
   homepage: {
-
+    backgroundColor: "#ede7f6",
   },
   images: {
     objectFit: "cover",
@@ -20,7 +20,7 @@ const useStyles = makeStyles({
     // width: '100%',
   },
   main: {
-    backgroundColor: "white",
+    backgroundColor: "#ede7f6",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -38,10 +38,14 @@ const useStyles = makeStyles({
       textTransform: 'none',
       fontSize: "1.2rem",
       fontWeight: "400",
-      background: '#3F51B5'
-    }
+      // background: '#3F51B5'
+    },
+'#artwork' :{
+  fontFamily: 'Trebuchet MS',
+},
 
   },
+  
   allNfts: {
     marginTop: "2rem",
     padding: "0 2rem",

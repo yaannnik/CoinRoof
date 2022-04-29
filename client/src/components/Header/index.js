@@ -5,6 +5,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import CssBaseline from "@material-ui/core/CssBaseline";
+// import {PersonIcon} from '@material-ui/icons-material/Person';
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
 
@@ -19,7 +20,7 @@ const Header = () => {
   return (
     <React.Fragment>
       <CssBaseline />
-      <AppBar className={classes.header}>
+      <AppBar color="primary" className={classes.header}>
         <Toolbar>
           <Link to="/">
             <img src={logo} alt="Galerie" className={classes.logo}/>

@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
   header: {
-    background: '#3F51B5'
+    background: "#4615b2"
   },
   logo: {
     width: "10rem"

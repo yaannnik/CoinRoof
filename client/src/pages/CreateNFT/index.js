@@ -98,7 +98,7 @@ const CreateNFT = () => {
     <div className={classes.pageCreateNft}>
       <form onSubmit={createNFT}>
         <div className={classes.formHeader}>
-          <h1>Create collectible</h1>
+          <h1 >  Create your NFT</h1>
           <Link to="/">
             <CancelOutlinedIcon fontSize="large" />
           </Link>
@@ -111,8 +111,9 @@ const CreateNFT = () => {
             <TextField
               label="Title"
               name="title"
-              variant="filled"
+              id="outlined-required"
               required
+              defaultValue="Put your title here"
               value={formData.title}
               onChange={handleInputChange}
               fullWidth
@@ -123,7 +124,6 @@ const CreateNFT = () => {
               rows={4}
               label="Description"
               name="description"
-              variant="filled"
               required
               value={formData.description}
               onChange={handleInputChange}
@@ -132,7 +132,6 @@ const CreateNFT = () => {
             <TextField
               label="price"
               name="price"
-              variant="filled"
               value={formData.price}
               onChange={handleInputChange}
               InputProps={{

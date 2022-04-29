@@ -5,6 +5,7 @@ const useStyles = makeStyles({
     width: "100%",
     maxWidth: "1100px",
     margin: "0 auto",
+    // backgroundColor:"#ede7f6",
 
     '& form': {
       margin: "20px auto 80px auto",
@@ -37,18 +38,26 @@ const useStyles = makeStyles({
 
     '& h1': {
       fontSize: "36px",
+      justifyContent: "center",
+      color: "#FFF",
+      fontFamily: "Trebuchet MS",
     },
 
     '& a': {
       marginLeft: "auto",
       marginRight: "1.5rem",
-    }
+    },
+
+    backgroundColor:"#4615b2",
   },
 
   content: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
+    '& h1': {
+      
+    },
   },
 
   dropzone: {
