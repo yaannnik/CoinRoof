@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Web3 from "web3";
-
+import { useDispatch, useSelector } from "react-redux";
 import { Card as MuiCard } from "@material-ui/core";
 import Chip from "@material-ui/core/Chip";
 import SvgIcon from "@material-ui/core/SvgIcon";
@@ -16,6 +16,7 @@ import { ReactComponent as EthereumLogo } from "../../assets/ethereum_logo.svg";
 
 const Card = ({ tokenId, name, image, price, owner, isForSale }) => {
   const classes = useStyles();
+  const account = useSelector((state) => state.allNft.account);
   console.log("image: ", image);
   return (
     // <Link to={isForSale? `/nft/${tokenId}`: `/`}>
@@ -42,7 +43,7 @@ const Card = ({ tokenId, name, image, price, owner, isForSale }) => {
                 size="small"
                 disabled={true}
                 color={isForSale? "success": "primary"}
-                label={isForSale? "Selling": "Disable"}  // disable not for sale items
+                label={isForSale && owner === account? "You Are Selling": isForSale? "Selling" : "Disable"}  // disable not for sale items
                 className={classes.badge}
               />
             </div>
@@ -60,7 +61,7 @@ const Card = ({ tokenId, name, image, price, owner, isForSale }) => {
               align={"center"}
               className={classes.seller}
             >
-              owner: {owner.slice(0, 7)}...{owner.slice(-4)}
+              {owner == account ? "You own this item" : "owner" + " " + owner.slice(0, 7) + "..." + owner.slice(-4)}
             </Typography>
           </CardContent>
         </CardActionArea>

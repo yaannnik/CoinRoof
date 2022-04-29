@@ -92,7 +92,7 @@ const Item = () => {
 
   async function buy(saleId, price, tokenId) {
     try {
-      alert(saleId);
+      // alert(saleId); // for test
       const receipt = await marketplaceContract.methods
         .buyItem(saleId)
         .send({ gas: 210000, value: price, from: account });
