@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
   homepage: {
-
+    backgroundColor: "#ede7f6",
   },
   images: {
     objectFit: "cover",
@@ -20,7 +20,7 @@ const useStyles = makeStyles({
     // width: '100%',
   },
   main: {
-    backgroundColor: "white",
+    backgroundColor: "#ede7f6",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",

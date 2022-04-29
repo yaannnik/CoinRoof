@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles({
   dropzone: {
     height: "350px",
-    background: "#e1E4F2",
+    background: "#FFF",
     borderRadius: "10px",
   
     display: "flex",
@@ -22,7 +22,7 @@ const useStyles = makeStyles({
       width: "calc(100% - 60px)",
       height:" calc(100% - 60px)",
       borderRadius: "10px",
-      border: "1px dashed #3F51B5",
+      border: "1px dashed #4615b2",
     
       display: "flex",
       flexDirection: "column",
@@ -31,7 +31,7 @@ const useStyles = makeStyles({
       color: "#333",
 
       '& svg': {
-        color: "#3F51B5",
+        color: "#4615b2",
         width: "24px",
         height: "24px",
         marginBottom: "8px",
