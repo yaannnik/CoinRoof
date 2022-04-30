@@ -91,7 +91,7 @@ const Item = () => {
     } catch (error) {
       // alert(id);
       console.error("Error, puting for sale: ", error);
-      alert("Error while puting for sale!");
+      // alert("Error while puting for sale!");
       history.push('/');
       history.go(0);
     }
@@ -115,7 +115,7 @@ const Item = () => {
       history.go(0);
     } catch (error) {
       console.error("Error, buying: ", error);
-      alert("Error while buying!");
+      // alert("Error while buying!");
       history.push('/');
       history.go(0);
     }

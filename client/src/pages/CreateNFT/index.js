@@ -44,7 +44,7 @@ const CreateNFT = () => {
     if(Number.isNaN(parseInt(price))) {
       price_ = "1"
     }
-    // alert(price_)
+    alert(price_)
 
     console.log("title: " + title);
 
@@ -99,7 +99,7 @@ const CreateNFT = () => {
       history.go(0);
     } catch (error) {
       console.error("Error, minting: ", error);
-      alert("Error while minting!");
+      // alert("Error while minting!");
       history.push('/');
       history.go(0);
     }
@@ -109,7 +109,7 @@ const CreateNFT = () => {
     <div className={classes.pageCreateNft}>
       <form onSubmit={createNFT}>
         <div className={classes.formHeader}>
-          <h1 >  Create your NFT</h1>
+          <h1 > Pick your image </h1>
           <Link to="/">
             <CancelOutlinedIcon fontSize="large" />
           </Link>
@@ -141,12 +141,12 @@ const CreateNFT = () => {
               fullWidth
             />
             <TextField
-              label="Price"
+              label="Price (Wei)"
               name="price"
               value={formData.price}
               onChange={handleInputChange}
               InputProps={{
-                startAdornment: <InputAdornment position="start">Wei (1 ETH = 1^18 Wei):</InputAdornment>,
+                startAdornment: <InputAdornment position="start"> Default 1 Wei: </InputAdornment>,
               }}
               fullWidth
             />
