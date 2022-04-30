@@ -19,7 +19,6 @@ const Card = ({ tokenId, name, image, price, owner, isForSale }) => {
   const account = useSelector((state) => state.allNft.account);
   console.log("image: ", image);
   return (
-    // <Link to={isForSale? `/nft/${tokenId}`: `/`}>
     <Link to={`/nft/${tokenId}`}>
       <MuiCard className={classes.root}>
         <CardActionArea>
@@ -43,14 +42,14 @@ const Card = ({ tokenId, name, image, price, owner, isForSale }) => {
                 size="small"
                 disabled={true}
                 color={isForSale? "success": "primary"}
-                label={isForSale && owner === account? "You are selling": isForSale? "Someone is selling" : "Created"}  // disable not for sale items
+                label = {isForSale ? (owner === account ? "You are selling" : "Someone is selling") : (owner === account ? "You are owning" : "Someone is owning") }
                 className={classes.badge}
               />
             </div>
             <Typography variant="h6" className={classes.price}>
               <SvgIcon
                 component={EthereumLogo}
-                viewBox="0 0 400 426.6"
+                viewBox="0 0 400 500"
                 titleAccess="ETH"
               />
               <span>{Web3.utils.fromWei(String(price), "ether")}</span>

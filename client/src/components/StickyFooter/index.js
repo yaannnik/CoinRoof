@@ -12,7 +12,7 @@ function Copyright() {
     <Typography variant="body2" color="text.secondary">
       {'Copyright © '}
       <Link color="inherit" href="https://github.com/yaannnik/CoinRoof">
-        Coinroof
+        CoinRoof
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}

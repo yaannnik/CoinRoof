@@ -124,7 +124,7 @@ const Item = () => {
   return (
     <div className={classes.pageItem}>
       {Object.keys(nft).length === 0 ? (
-        <div>Loading...</div>
+        <div>Error, page not found...</div>
       ) : (
         <main>
           <header className={classes.pageHeader}>
@@ -207,7 +207,7 @@ const Item = () => {
                       variant="contained"
                       color="Success"
                     >
-                      You are selling this item!
+                      You are selling this item
                     </Button>
                   )}
 
@@ -218,6 +218,15 @@ const Item = () => {
                       onClick={() => buy(saleId, price, tokenId)}
                     >
                       Buy
+                    </Button>
+                  )}
+
+                  {owner !== account && !isForSale && (
+                    <Button
+                      variant="contained"
+                      color="success"
+                    >
+                      Not for sale yet
                     </Button>
                   )}
                 </fieldset>
