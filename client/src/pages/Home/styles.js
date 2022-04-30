@@ -40,7 +40,7 @@ const useStyles = makeStyles({
       fontWeight: "400",
       // background: '#3F51B5'
     },
-'#artwork' :{
+'& h3' :{
   fontFamily: 'Trebuchet MS',
 },
 

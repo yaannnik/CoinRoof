@@ -2,8 +2,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
   pageCreateNft: {
-    width: "100%",
-    maxWidth: "1100px",
+    // width: "100%",
+    // maxWidth: "1100px",
     margin: "0 auto",
     // backgroundColor:"#ede7f6",
 

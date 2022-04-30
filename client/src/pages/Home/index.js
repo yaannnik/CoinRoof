@@ -21,6 +21,7 @@ import {
 
 // internal components
 import Card from "../../components/Card";
+import StickyFooter from "../../components/StickyFooter";
 import ImgList from "../../components/ImgList";
 
 // css
@@ -177,7 +178,7 @@ const Home = () => {
           </Grid>
           <Grid item xs={6} className={classes.main}>
             {/* <img src={galerie} alt="galerie" /> */}
-            <Typography variant="h3" id="artwork">Artwork Market</Typography>
+            <h1>CoinRoof</h1>
             <Typography>A decentralized NFT marketplace where you can expose your art.
               You can buy and sell Exclusive NFTs simply with a few clicks.</Typography>
             <Typography>Own it, show it, buy it!</Typography>
@@ -226,6 +227,9 @@ const Home = () => {
             </Grid>
           ))}
         </Grid>
+      </section>
+      <section >
+        <StickyFooter/>
       </section>
     </div>
   );
