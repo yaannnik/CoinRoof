@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useHistory } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -46,6 +46,7 @@ const Item = () => {
     isSold,
   } = nft;
   const dispatch = useDispatch();
+  const history = useHistory();
 
   useEffect(() => {
     if (nftId && nftId !== "" && nftItem) dispatch(selectedNft(nftItem[0]));
@@ -56,7 +57,7 @@ const Item = () => {
 
   async function putForSale(id, price) {
     try {
-      alert(id);
+      // alert(id);
       // const itemIdex = getItemIndexBuyTokenId(id);
       let itemList = ArtMarketplace.itemsForSale
       const totalItemsForSale = await marketplaceContract.methods
@@ -67,12 +68,12 @@ const Item = () => {
         console.log(itemList)
       }
       
-      console.log("1");
+      // console.log("1");
       // const marketAddress = ArtMarketplace.networks[1337].address;
       // console.log(marketAddress);
-      console.log("2");
+      // console.log("2");
       const web3 = new Web3("http://localhost:8545")
-      console.log("3");
+      // console.log("3");
       const networkId = await web3.eth.net.getId();
       const contractAddress = ArtMarketplace.networks[networkId].address;
       console.log(contractAddress);
@@ -85,10 +86,14 @@ const Item = () => {
         .putItemForSale(id, price)
         .send({ gas: 210000, from: account });
       console.log(receipt);
+      history.push('/');
+      history.go(0);
     } catch (error) {
-      alert(id);
+      // alert(id);
       console.error("Error, puting for sale: ", error);
       alert("Error while puting for sale!");
+      history.push('/');
+      history.go(0);
     }
   }
 
@@ -106,9 +111,13 @@ const Item = () => {
       // console.log("2");
       // await artTokenContract.methods.setApprovalForAll(marketAddress, tokenId);
       // console.log("3");
+      history.push('/');
+      history.go(0);
     } catch (error) {
       console.error("Error, buying: ", error);
       alert("Error while buying!");
+      history.push('/');
+      history.go(0);
     }
   }
 
@@ -138,7 +147,7 @@ const Item = () => {
                 <fieldset>
                   <h1>{name}</h1>
                   <TextField
-                    label="creator"
+                    label="Creator"
                     name="creator"
                     variant="filled"
                     margin="dense"
@@ -149,7 +158,7 @@ const Item = () => {
                     }
                   />
                   <TextField
-                    label="owner"
+                    label="Owner"
                     name="owner"
                     variant="filled"
                     disabled
@@ -170,7 +179,7 @@ const Item = () => {
                     defaultValue={description}
                   />
                   <TextField
-                    label="price"
+                    label="Price"
                     name="price"
                     variant="filled"
                     margin="dense"

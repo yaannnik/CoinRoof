@@ -40,13 +40,18 @@ const CreateNFT = () => {
   async function createNFT(event) {
     event.preventDefault();
     const { title, description, price } = formData;
+    var price_ = String(parseInt(price))
+    if(Number.isNaN(parseInt(price))) {
+      price_ = "1"
+    }
+    // alert(price_)
 
     console.log("title: " + title);
 
     const data = new FormData();
     data.append("name", title);
     data.append("description", description);
-    data.append("price", price);
+    data.append("price", price_);
 
     if(selectedFile){
       data.append('img', selectedFile);
@@ -68,6 +73,8 @@ const CreateNFT = () => {
     } catch (error) {
       console.log(error);
       // error.response.data
+      history.push('/');
+      history.go(0);
     }
   }
 
@@ -89,9 +96,12 @@ const CreateNFT = () => {
       //   isSold: null
       // }]);
       history.push('/');
+      history.go(0);
     } catch (error) {
       console.error("Error, minting: ", error);
       alert("Error while minting!");
+      history.push('/');
+      history.go(0);
     }
   }
 
@@ -131,12 +141,12 @@ const CreateNFT = () => {
               fullWidth
             />
             <TextField
-              label="price"
+              label="Price"
               name="price"
               value={formData.price}
               onChange={handleInputChange}
               InputProps={{
-                startAdornment: <InputAdornment position="start">ETH</InputAdornment>,
+                startAdornment: <InputAdornment position="start">Wei (1 ETH = 1^18 Wei):</InputAdornment>,
               }}
               fullWidth
             />
