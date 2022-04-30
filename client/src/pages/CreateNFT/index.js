@@ -9,6 +9,7 @@ import Button from "@material-ui/core/Button";
 import { useStyles } from "./styles.js";
 
 import DropZone from "../../components/DropZone";
+import StickyFooter from "../../components/StickyFooter/index.js";
 
 import { api } from "../../services/api";
 
@@ -146,6 +147,10 @@ const CreateNFT = () => {
           </fieldset>
         </div>
       </form>
+
+      <section >
+        <StickyFooter/>
+      </section>
     </div>
   );
 };

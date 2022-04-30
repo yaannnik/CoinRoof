@@ -12,6 +12,8 @@ import ArtToken from "../../contracts/ArtToken.json";
 import ArtMarketplace from "../../contracts/ArtMarketplace.json";
 import Address from "../../contracts/Address.json";
 
+import StickyFooter from "../../components/StickyFooter";
+
 import { selectedNft, removeSelectedNft } from "../../redux/actions/nftActions";
 
 import { useStyles } from "./styles.js";
@@ -213,6 +215,10 @@ const Item = () => {
               </Grid>
             </Grid>
           </section>
+
+      <section >
+        <StickyFooter/>
+      </section>
         </main>
       )}
     </div>
