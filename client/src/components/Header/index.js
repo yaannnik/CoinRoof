@@ -11,20 +11,26 @@ import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
 
 import {useStyles} from './styles.js'
 
+import { useHistory } from "react-router-dom";
 import logo from '../../assets/Logo.svg';
 
 const Header = () => {
   const classes = useStyles();
   const account = useSelector((state) => state.allNft.account);
+  const history = useHistory();
+
+  const onClickImg = () => {
+
+    history.push('/');
+    history.go(0);
+  }
 
   return (
     <React.Fragment>
       <CssBaseline />
       <AppBar color="primary" className={classes.header}>
         <Toolbar>
-          <Link to="/">
-            <img src={logo} alt="Galerie" className={classes.logo}/>
-          </Link>
+            <img  onClick={onClickImg} src={logo} alt="Galerie" className={classes.logo}/>
           <div className={classes.account}>
             <AccountBalanceWalletIcon titleAccess="Wallet Address" className={classes.walletIcon}/>
             <Typography variant="subtitle1">{account.slice(0,7)}...{account.slice(-4)}</Typography>
