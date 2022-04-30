@@ -2,10 +2,10 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
   header: {
-    background: "#4615b2"
+    background: "#247dc2"
   },
   logo: {
-    width: "10rem"
+    width: "3rem"
   },
   account: {
     marginLeft: "auto",

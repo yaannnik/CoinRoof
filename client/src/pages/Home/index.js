@@ -213,7 +213,7 @@ const Home = () => {
         </Grid>
       </section>
       <section className={classes.allNfts}>
-        <Typography className={classes.title}>Latest artwork</Typography>
+        <Typography className={classes.title}> Market </Typography>
         <Grid
           container
           direction="row"

@@ -43,7 +43,7 @@ const Card = ({ tokenId, name, image, price, owner, isForSale }) => {
                 size="small"
                 disabled={true}
                 color={isForSale? "success": "primary"}
-                label={isForSale && owner === account? "You Are Selling": isForSale? "Selling" : "Disable"}  // disable not for sale items
+                label={isForSale && owner === account? "You are selling": isForSale? "Someone is selling" : "Created"}  // disable not for sale items
                 className={classes.badge}
               />
             </div>

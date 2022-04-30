@@ -22,7 +22,7 @@ const useStyles = makeStyles({
       width: "calc(100% - 60px)",
       height:" calc(100% - 60px)",
       borderRadius: "10px",
-      border: "1px dashed #4615b2",
+      border: "1px dashed #247dc1",
     
       display: "flex",
       flexDirection: "column",
@@ -31,7 +31,7 @@ const useStyles = makeStyles({
       color: "#333",
 
       '& svg': {
-        color: "#4615b2",
+        color: "#247dc1",
         width: "24px",
         height: "24px",
         marginBottom: "8px",

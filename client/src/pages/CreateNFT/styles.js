@@ -48,7 +48,7 @@ const useStyles = makeStyles({
       marginRight: "1.5rem",
     },
 
-    backgroundColor:"#4615b2",
+    backgroundColor:"#247dc1",
   },
 
   content: {
