@@ -9,7 +9,7 @@ const useStyles = makeStyles({
 
     '& form': {
       margin: "20px auto 80px auto",
-      maxWidth: "730px",
+      maxWidth: "800px",
       background: "#FFF",
       borderRadius: "8px",
     

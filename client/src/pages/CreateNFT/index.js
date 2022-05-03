@@ -123,6 +123,7 @@ const CreateNFT = () => {
               label="Title"
               name="title"
               id="outlined-required"
+              variant="outlined"
               required
               defaultValue="Put your title here"
               value={formData.title}
@@ -130,11 +131,12 @@ const CreateNFT = () => {
               fullWidth
             />
             <TextField
-              id="outlined-multiline-static"
+              id="outlined-basic"
               multiline
               rows={4}
               label="Description"
               name="description"
+              variant="outlined"
               required
               value={formData.description}
               onChange={handleInputChange}
@@ -143,6 +145,7 @@ const CreateNFT = () => {
             <TextField
               label="Price (Wei)"
               name="price"
+              variant="outlined"
               value={formData.price}
               onChange={handleInputChange}
               InputProps={{

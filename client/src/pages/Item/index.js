@@ -149,7 +149,7 @@ const Item = () => {
                   <TextField
                     label="Creator"
                     name="creator"
-                    variant="filled"
+                    variant="outlined"
                     margin="dense"
                     fullWidth
                     disabled
@@ -160,19 +160,19 @@ const Item = () => {
                   <TextField
                     label="Owner"
                     name="owner"
-                    variant="filled"
+                    variant="outlined"
                     disabled
                     fullWidth
                     margin="dense"
                     defaultValue={owner.slice(0, 7) + "..." + owner.slice(-4)}
                   />
                   <TextField
-                    id="outlined-multiline-static"
+                    id="outlined-basic"
                     multiline
                     rows={4}
                     label="Description"
                     name="description"
-                    variant="filled"
+                    variant="outlined"
                     margin="dense"
                     disabled
                     fullWidth
@@ -181,7 +181,7 @@ const Item = () => {
                   <TextField
                     label="Price"
                     name="price"
-                    variant="filled"
+                    variant="outlined"
                     margin="dense"
                     defaultValue={Web3.utils.fromWei(String(price), "ether")}
                     InputProps={{
@@ -234,11 +234,12 @@ const Item = () => {
             </Grid>
           </section>
 
-      <section >
-        <StickyFooter/>
-      </section>
+          
         </main>
       )}
+      <section >
+            <StickyFooter/>
+          </section>
     </div>
   );
 };
