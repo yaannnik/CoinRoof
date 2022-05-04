@@ -15,9 +15,9 @@ import Base from "../../contracts/Base.json";
 import {
   setNft,
   setAccount,
-  setTokenContract,
-  setMarketContract,
-} from "../../redux/actions/nftActions";
+  setBaseContract,
+  setTransactionContract,
+} from "../../redux/actions/actions";
 
 // internal components
 import Card from "../../components/Card";
@@ -29,7 +29,7 @@ import { useStyles } from "./styles.js";
 
 const Home = () => {
   const classes = useStyles();
-  const nft = useSelector((state) => state.allNft.nft);
+  const nft = useSelector((state) => state.user.nft);
   const dispatch = useDispatch();
   const [itemsList, setitemsList] = useState([])  // TODO: state refresh
 
@@ -53,14 +53,14 @@ const Home = () => {
             Base.networks[networkId].address
           );
           // console.log("Contract: ", baseContract);
-          const marketplaceContract = new web3.eth.Contract(
+          const transactionContract = new web3.eth.Contract(
             Transaction.abi,
             Transaction.networks[networkId].address
           );
           const totalSupply = await baseContract.methods
             .totalSupply()
             .call();
-          const totalItemsForSale = await marketplaceContract.methods
+          const totalItemsForSale = await transactionContract.methods
             .totalItemsForSale()
             .call();
           for (var tokenId = 1; tokenId <= totalSupply; tokenId++) {
@@ -91,10 +91,10 @@ const Home = () => {
           if (totalItemsForSale > 0) {
             
             for (var saleId = 0; saleId < totalItemsForSale; saleId++) {
-              let item = await marketplaceContract.methods
+              let item = await transactionContract.methods
                 .itemsForSale(saleId)
                 .call();
-              let active = await marketplaceContract.methods
+              let active = await transactionContract.methods
                 .activeItems(item.tokenId)
                 .call();
 
@@ -113,8 +113,8 @@ const Home = () => {
           }
 
           dispatch(setAccount(accounts[0]));
-          dispatch(setTokenContract(baseContract));
-          dispatch(setMarketContract(marketplaceContract));
+          dispatch(setBaseContract(baseContract));
+          dispatch(setTransactionContract(transactionContract));
           dispatch(setNft(itemsListNew));
 
           setitemsList(itemsListNew);
@@ -139,7 +139,7 @@ const Home = () => {
 
   console.log("Nft :", nft);
 
-  const nftItem = useSelector((state) => state.allNft.nft);
+  const nftItem = useSelector((state) => state.user.nft);
 
 
   return (
@@ -150,7 +150,6 @@ const Home = () => {
               <ImgList phase={1}/>
           </Grid>
           <Grid item xs={6} className={classes.main}>
-            {/* <img src={galerie} alt="galerie" /> */}
             <h1>CoinRoof</h1>
             <Typography>A decentralized NFT marketplace where you can expose your art.
               You can buy and sell Exclusive NFTs simply with a few clicks.</Typography>
@@ -168,7 +167,7 @@ const Home = () => {
           </Grid>
         </Grid>
       </section>
-      <section className={classes.allNfts}>
+      <section className={classes.cardsList}>
         <Typography className={classes.title}> Market </Typography>
         <Grid
           container

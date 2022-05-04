@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
-import { nftReducer, selectedNftReducer } from "./nftReducer";
+import { userReducer, itemReducer } from "./reducers";
 
 const reducers = combineReducers({
-  allNft: nftReducer,
-  nft: selectedNftReducer,
+  user: userReducer,
+  nft: itemReducer,
 });
 
 export default reducers;

@@ -16,7 +16,7 @@ import { ReactComponent as coin_logo } from "../../assets/lion.svg";
 
 const Card = ({ tokenId, name, image, price, owner, isForSale }) => {
   const classes = useStyles();
-  const account = useSelector((state) => state.allNft.account);
+  const account = useSelector((state) => state.user.account);
   console.log("image: ", image);
   return (
     <Link to={`/nft/${tokenId}`}>

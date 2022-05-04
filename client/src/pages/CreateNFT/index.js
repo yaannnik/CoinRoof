@@ -17,9 +17,9 @@ const CreateNFT = () => {
   const classes = useStyles();
   const history = useHistory();
 
-  const account = useSelector((state) => state.allNft.account);
+  const account = useSelector((state) => state.user.account);
   const baseContract = useSelector(
-    (state) => state.allNft.baseContract
+    (state) => state.user.baseContract
   );
 
   const [selectedFile, setSelectedFile] = useState();
@@ -31,9 +31,6 @@ const CreateNFT = () => {
 
   function handleInputChange(event) {
     let { name, value } = event.target;
-    // if(name === 'image'){
-    //   value = event.target.files[0];
-    // }
     setFormData({ ...formData, [name]: value });
   }
 
@@ -85,16 +82,6 @@ const CreateNFT = () => {
         .send({ gas: 1000000, from: account });
       console.log(receipt);
       console.log(receipt.events.Transfer.returnValues.tokenId);
-      // setItems(items => [...items, {
-      //   tokenId: receipt.events.Transfer.returnValues.tokenId,
-      //   creator: accounts[0],
-      //   owner: accounts[0],
-      //   uri: tokenMetadataURL,
-      //   isForSale: false,
-      //   saleId: null,
-      //   price: 0,
-      //   isSold: null
-      // }]);
       history.push('/');
       history.go(0);
     } catch (error) {

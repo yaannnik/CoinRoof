@@ -11,23 +11,23 @@ import Grid from "@material-ui/core/Grid";
 import Web3 from "web3";
 import Transaction from "../../contracts/Transaction.json";
 import StickyFooter from "../../components/StickyFooter";
-import { selectedNft, removeSelectedNft } from "../../redux/actions/nftActions";
+import { selectedNft, removeSelectedNft } from "../../redux/actions/actions";
 import { useStyles } from "./styles.js";
 
 const Item = () => {
   const classes = useStyles();
 
   const { nftId } = useParams();
-  const marketplaceContract = useSelector(
-    (state) => state.allNft.marketplaceContract
+  const transactionContract = useSelector(
+    (state) => state.user.transactionContract
   );
   const baseContract = useSelector(
-    (state) => state.allNft.baseContract
+    (state) => state.user.baseContract
   );
-  const account = useSelector((state) => state.allNft.account);
+  const account = useSelector((state) => state.user.account);
   let nft = useSelector((state) => state.nft);
   let nftItem = useSelector((state) =>
-    state.allNft.nft.filter((nft) => nft.tokenId === nftId)
+    state.user.nft.filter((nft) => nft.tokenId === nftId)
   );
   const {
     image,
@@ -56,7 +56,7 @@ const Item = () => {
       // alert(id);
       // const itemIdex = getItemIndexBuyTokenId(id);
       let itemList = Transaction.itemsForSale
-      const totalItemsForSale = await marketplaceContract.methods
+      const totalItemsForSale = await transactionContract.methods
             .totalItemsForSale()
             .call();
       console.log(itemList)
@@ -70,7 +70,7 @@ const Item = () => {
       const contractAddress = Transaction.networks[networkId].address;
       console.log(contractAddress);
       await baseContract.methods.approve(contractAddress, id).send({from: account});
-      const receipt = await marketplaceContract.methods
+      const receipt = await transactionContract.methods
         .sellItem(id, price)
         .send({ gas: 210000, from: account });
       console.log(receipt);
@@ -88,7 +88,7 @@ const Item = () => {
   async function buy(saleId, price, tokenId) {
     try {
       // alert(saleId); // for test
-      const receipt = await marketplaceContract.methods
+      const receipt = await transactionContract.methods
         .buyItem(saleId)
         .send({ gas: 210000, value: price, from: account });
       console.log(receipt);
@@ -219,8 +219,8 @@ const Item = () => {
         </main>
       )}
       <section >
-            <StickyFooter/>
-          </section>
+        <StickyFooter/>
+      </section>
     </div>
   );
 };

@@ -16,7 +16,7 @@ import logo from '../../assets/crown.png';
 
 const Header = () => {
   const classes = useStyles();
-  const account = useSelector((state) => state.allNft.account);
+  const account = useSelector((state) => state.user.account);
   const history = useHistory();
 
   const onClickImg = () => {

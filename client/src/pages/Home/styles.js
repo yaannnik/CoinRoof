@@ -46,7 +46,7 @@ const useStyles = makeStyles({
 
   },
   
-  allNfts: {
+  cardsList: {
     marginTop: "2rem",
     padding: "0 2rem",
   },
