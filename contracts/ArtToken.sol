@@ -43,7 +43,6 @@ contract ArtToken is ERC721Enumerable{
   }
 
   function setMarketplace(address market) public {
-    //require(msg.sender ==);
     marketplace = market;
   }
 

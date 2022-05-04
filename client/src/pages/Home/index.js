@@ -27,17 +27,6 @@ import ImgList from "../../components/ImgList";
 // css
 import { useStyles } from "./styles.js";
 
-// import veterans from "../../assets/arts/Sparse-Ahmed-Mostafa-vetarans-2.jpg";
-// import lionKing from "../../assets/arts/suresh-pydikondala-lion.jpg";
-// import dreaming from "../../assets/arts/phuongvp-maybe-i-m-dreaming-by-pvpgk-deggyli.jpg";
-// import modeling3d from "../../assets/arts/alan-linssen-alanlinssen-kitbashkitrender2.jpg";
-// import woman from "../../assets/arts/ashline-sketch-brushes-3-2.jpg";
-// import stones from "../../assets/arts/rentao_-22-10-.jpg";
-// import wale from "../../assets/arts/luzhan-liu-1-1500.jpg";
-// import comic from "../../assets/arts/daniel-taylor-black-and-white-2019-2.jpg";
-// import galerie from "../../assets/galerie.svg";
-
-
 const Home = () => {
   const classes = useStyles();
   const nft = useSelector((state) => state.allNft.nft);
@@ -51,7 +40,6 @@ const Home = () => {
       try {
         const web3 = await getWeb3();
         const accounts = await web3.eth.getAccounts();
-        // const me = accounts[1]
 
         if (typeof accounts === undefined) {
           alert("Please login with Metamask!");
@@ -93,7 +81,6 @@ const Home = () => {
               creator: item.creator,
               owner: owner,
               uri: item.uri,
-              // isForSale: item.creator !== accounts[0],  // cannot buy items from yourself
               isForSale: false,  // cannot buy items from yourself
               saleId: null,
               price: response.data.price,
@@ -160,20 +147,6 @@ const Home = () => {
       <section className={classes.banner}>
         <Grid container spacing={0} xs={12} className={classes.gridBanner}>
           <Grid item xs={3}>
-            {/* <Grid container spacing={0}>
-              <Grid item xs={8}>
-                <img src={dreaming} alt="dreaming" className={classes.images} />
-              </Grid>
-              <Grid item xs={4}>
-                <img src={veterans} alt="veterans" className={classes.images} />
-              </Grid>
-              <Grid item xs={7}>
-                <img src={modeling3d} alt="modeling3d" className={classes.images} />
-              </Grid>
-              <Grid item xs={5}>
-                <img src={lionKing} alt="lionKing" className={classes.images} />
-              </Grid>
-            </Grid> */}
               <ImgList phase={1}/>
           </Grid>
           <Grid item xs={6} className={classes.main}>
@@ -183,10 +156,6 @@ const Home = () => {
               You can buy and sell Exclusive NFTs simply with a few clicks.</Typography>
             <Typography>Own it, show it, buy it!</Typography>
             <Link to="/create-nft">
-              {/* <Button variant="contained" color="primary" disableElevation>
-                Mint your art
-              </Button> */}
-              {/* <UploadButton>Upload your artwork!</UploadButton> */}
               <Button variant="contained" color="primary">
                 Upload your artwork!
               </Button>
@@ -194,19 +163,6 @@ const Home = () => {
           </Grid>
           <Grid item xs={3}>
             <Grid container spacing={0}>
-              {/* <Grid item xs={8}>
-                <img src={stones} alt="dreaming" className={classes.images} />
-              </Grid>
-              <Grid item xs={4}>
-                <img src={woman} alt="veterans" className={classes.images} />
-              </Grid>
-              <Grid item xs={7}>
-                <img src={wale} alt="modeling3d" className={classes.images} />
-              </Grid>
-              <Grid item xs={5}>
-                <img src={comic} alt="lionKing" className={classes.images} />
-              </Grid> */}
-
             <ImgList phase={2}/>
             </Grid>
           </Grid>

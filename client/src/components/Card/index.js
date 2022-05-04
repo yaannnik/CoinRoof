@@ -1,7 +1,7 @@
+import Web3 from "web3";
 import React from "react";
 import { Link } from "react-router-dom";
-import Web3 from "web3";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Card as MuiCard } from "@material-ui/core";
 import Chip from "@material-ui/core/Chip";
 import SvgIcon from "@material-ui/core/SvgIcon";
@@ -12,7 +12,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardActionArea from "@material-ui/core/CardActionArea";
 
 import { useStyles } from "./styles.js";
-import { ReactComponent as EthereumLogo } from "../../assets/ethereum_logo.svg";
+import { ReactComponent as coin_logo } from "../../assets/lion.svg";
 
 const Card = ({ tokenId, name, image, price, owner, isForSale }) => {
   const classes = useStyles();
@@ -55,7 +55,7 @@ const Card = ({ tokenId, name, image, price, owner, isForSale }) => {
           </div>
         <Typography variant="h6" className={classes.price}>
               <SvgIcon
-                component={EthereumLogo}
+                component={coin_logo}
                 viewBox="0 0 400 500"
                 titleAccess="ETH"
               />
