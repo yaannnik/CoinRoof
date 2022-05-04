@@ -10,15 +10,27 @@ const useStyles = makeStyles({
     borderRadius: "0.6rem",
     margin: "auto",
     transition: "0.3s",
-    boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
+    boxShadow: "0 8px 40px -12px rgba(0,0,0,0.5)",
+    // "&:hover": {
+    //   boxShadow: "0 16px 70px -12.125px rgba(0,0,0,0.5)",
+    // },
     "&:hover": {
-      boxShadow: "0 16px 70px -12.125px rgba(0,0,0,0.3)",
+      boxshadow: "0 16px 32px 0 rgba(48, 55, 66, 0.5)",
+      transform: "translate(0,-50px)",
+      transitiondelay: "0s ",
     },
   },
   content: {
+    // backgroundColor: "#b0e0e6",
     // textAlign: "left",
     // padding: spaceUnits * 6,
   },
+  content2: {
+    // backgroundColor: "#b0e0e6",
+    // textAlign: "left",
+    // padding: spaceUnits * 6,
+  },
+  
   divider: {
     margin: `${spaceUnits * 3}px 0`,
   },

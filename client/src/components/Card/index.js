@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Web3 from "web3";
 import { useDispatch, useSelector } from "react-redux";
-import { Card as MuiCard, ImageListItemBar, IconButton } from "@material-ui/core";
+import { Card as MuiCard } from "@material-ui/core";
 import Chip from "@material-ui/core/Chip";
 import SvgIcon from "@material-ui/core/SvgIcon";
 import Divider from "@material-ui/core/Divider";
@@ -22,13 +22,6 @@ const Card = ({ tokenId, name, image, price, owner, isForSale }) => {
     <Link to={`/nft/${tokenId}`}>
       <MuiCard className={classes.root}>
         <CardActionArea>
-          <CardMedia
-            component="img"
-            alt={name}
-            height="240"
-            image={image}
-            title={name}
-          />
           <CardContent className={classes.content}>
             <div className={classes.title}>
               <Typography
@@ -38,15 +31,29 @@ const Card = ({ tokenId, name, image, price, owner, isForSale }) => {
               >
                 {name}
               </Typography>
-              <Chip
+              
+            </div>
+            
+          </CardContent>
+          <CardMedia
+            component="img"
+            alt={name}
+            height="240"
+            image={image}
+            title={name}
+          />
+        </CardActionArea>
+        <CardContent className={classes.content2}>
+          <div>
+          <Chip
                 size="small"
                 disabled={true}
                 color={isForSale? "success": "primary"}
                 label = {isForSale ? (owner === account ? "You are selling" : "Someone is selling") : (owner === account ? "You are owning" : "Someone is owning") }
                 className={classes.badge}
               />
-            </div>
-            <Typography variant="h6" className={classes.price}>
+          </div>
+        <Typography variant="h6" className={classes.price}>
               <SvgIcon
                 component={EthereumLogo}
                 viewBox="0 0 400 500"
@@ -62,8 +69,7 @@ const Card = ({ tokenId, name, image, price, owner, isForSale }) => {
             >
               {owner == account ? "You own this item" : "owner" + " " + owner.slice(0, 7) + "..." + owner.slice(-4)}
             </Typography>
-          </CardContent>
-        </CardActionArea>
+        </CardContent>
       </MuiCard>
     </Link>
   );
