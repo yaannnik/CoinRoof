@@ -1,21 +1,21 @@
 const { assert } = require('chai')
 
-const ArtToken = artifacts.require('./ArtToken')
+const Base = artifacts.require('./Base')
 
 require('chai')
   .use(require('chai-as-promised'))
   .should()
 
-contract('ArtToken', (accounts) => {
-  let artToken
+contract('Base', (accounts) => {
+  let base
 
   beforeEach( async () => {
-    artToken = await ArtToken.deployed()
+    base = await Base.deployed()
   })
 
   describe('deployment', async () => {
       it('deploys successfully', async () => {
-        const address = artToken.address
+        const address = base.address
         assert.notEqual(address, 0x0)
         assert.notEqual(address, '')
         assert.notEqual(address, null)
@@ -23,26 +23,26 @@ contract('ArtToken', (accounts) => {
       })
 
       it('has a name', async () => {
-        const name = await artToken.name()
-        assert.equal(name, 'ArtToken')
+        const name = await base.name()
+        assert.equal(name, 'Base')
       })
 
       it('has a symbol', async () => {
-        const symbol = await artToken.symbol()
-        assert.equal(symbol, 'ARTK')
+        const symbol = await base.symbol()
+        assert.equal(symbol, 'BASE')
       })
   })
 
   describe('minting', async () => {
     it('creates a new token', async () => {
-      const result = await artToken.mint('#EC058E')
+      const result = await base.mint('#EC058E')
 
       const event = result.logs[0].args
       const tokenId = event.tokenId.toNumber()
-      const totalSupply = await artToken.totalSupply()
-      const item = await artToken.Items(tokenId)
-      const owner = await artToken.ownerOf(tokenId)
-      const approvedAddress = await artToken.getApproved(tokenId)
+      const totalSupply = await base.totalSupply()
+      const item = await base.Items(tokenId)
+      const owner = await base.ownerOf(tokenId)
+      const approvedAddress = await base.getApproved(tokenId)
       console.log(approvedAddress)
 
       //success
@@ -58,16 +58,16 @@ contract('ArtToken', (accounts) => {
   describe('indexing', async () => {
     it('lists colors', async () => {
       //mint 3 more tokens
-      await artToken.mint('#5386E4')
-      await artToken.mint('#FFFFFF')
-      await artToken.mint('#000000')
+      await base.mint('#5386E4')
+      await base.mint('#FFFFFF')
+      await base.mint('#000000')
 
-      const totalSupply = await artToken.totalSupply()
+      const totalSupply = await base.totalSupply()
       let item
       let result = []
 
       for (var i=1; i <= totalSupply; i++){
-        item = await artToken.Items(i)
+        item = await base.Items(i)
         result.push(item.uri)
       }
 

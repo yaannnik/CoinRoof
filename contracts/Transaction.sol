@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "./ArtToken.sol";
+import "./Base.sol";
 
-contract ArtMarketplace {
-  ArtToken private token;
+contract Transaction {
+  Base private token;
 
   struct ItemForSale {
     uint256 id;
@@ -20,7 +20,7 @@ contract ArtMarketplace {
   event itemAddedForSale(uint256 id, uint256 tokenId, uint256 price);
   event itemSold(uint256 id, address buyer, uint256 price);
 
-  constructor(ArtToken _token) {
+  constructor(Base _token) {
       token = _token;
   }
 
@@ -44,7 +44,7 @@ contract ArtMarketplace {
     _;
   }
 
-  function putItemForSale(uint256 tokenId, uint256 price) 
+  function sellItem(uint256 tokenId, uint256 price) 
     OnlyItemOwner(tokenId) 
     HasTransferApproval(tokenId) 
     external 

@@ -9,7 +9,7 @@ import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 
 import Web3 from "web3";
-import ArtMarketplace from "../../contracts/ArtMarketplace.json";
+import Transaction from "../../contracts/Transaction.json";
 import StickyFooter from "../../components/StickyFooter";
 import { selectedNft, removeSelectedNft } from "../../redux/actions/nftActions";
 import { useStyles } from "./styles.js";
@@ -21,8 +21,8 @@ const Item = () => {
   const marketplaceContract = useSelector(
     (state) => state.allNft.marketplaceContract
   );
-  const artTokenContract = useSelector(
-    (state) => state.allNft.artTokenContract
+  const baseContract = useSelector(
+    (state) => state.allNft.baseContract
   );
   const account = useSelector((state) => state.allNft.account);
   let nft = useSelector((state) => state.nft);
@@ -55,7 +55,7 @@ const Item = () => {
     try {
       // alert(id);
       // const itemIdex = getItemIndexBuyTokenId(id);
-      let itemList = ArtMarketplace.itemsForSale
+      let itemList = Transaction.itemsForSale
       const totalItemsForSale = await marketplaceContract.methods
             .totalItemsForSale()
             .call();
@@ -67,11 +67,11 @@ const Item = () => {
       const web3 = new Web3("http://localhost:8545")
       // console.log("3");
       const networkId = await web3.eth.net.getId();
-      const contractAddress = ArtMarketplace.networks[networkId].address;
+      const contractAddress = Transaction.networks[networkId].address;
       console.log(contractAddress);
-      await artTokenContract.methods.approve(contractAddress, id).send({from: account});
+      await baseContract.methods.approve(contractAddress, id).send({from: account});
       const receipt = await marketplaceContract.methods
-        .putItemForSale(id, price)
+        .sellItem(id, price)
         .send({ gas: 210000, from: account });
       console.log(receipt);
       history.push('/');

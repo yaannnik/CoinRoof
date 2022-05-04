@@ -8,8 +8,8 @@ import getWeb3 from "../../utils/getWeb3";
 import { api } from "../../services/api";
 
 // contracts
-import ArtMarketplace from "../../contracts/ArtMarketplace.json";
-import ArtToken from "../../contracts/ArtToken.json";
+import Transaction from "../../contracts/Transaction.json";
+import Base from "../../contracts/Base.json";
 
 // reducers
 import {
@@ -48,24 +48,24 @@ const Home = () => {
 
         const networkId = await web3.eth.net.getId();
         try {
-          const artTokenContract = new web3.eth.Contract(
-            ArtToken.abi,
-            ArtToken.networks[networkId].address
+          const baseContract = new web3.eth.Contract(
+            Base.abi,
+            Base.networks[networkId].address
           );
-          // console.log("Contract: ", artTokenContract);
+          // console.log("Contract: ", baseContract);
           const marketplaceContract = new web3.eth.Contract(
-            ArtMarketplace.abi,
-            ArtMarketplace.networks[networkId].address
+            Transaction.abi,
+            Transaction.networks[networkId].address
           );
-          const totalSupply = await artTokenContract.methods
+          const totalSupply = await baseContract.methods
             .totalSupply()
             .call();
           const totalItemsForSale = await marketplaceContract.methods
             .totalItemsForSale()
             .call();
           for (var tokenId = 1; tokenId <= totalSupply; tokenId++) {
-            let item = await artTokenContract.methods.Items(tokenId).call();
-            let owner = await artTokenContract.methods.ownerOf(tokenId).call();
+            let item = await baseContract.methods.Items(tokenId).call();
+            let owner = await baseContract.methods.ownerOf(tokenId).call();
             const response = await api
               .get(`/tokens/${tokenId}`)
               .catch((err) => {
@@ -113,7 +113,7 @@ const Home = () => {
           }
 
           dispatch(setAccount(accounts[0]));
-          dispatch(setTokenContract(artTokenContract));
+          dispatch(setTokenContract(baseContract));
           dispatch(setMarketContract(marketplaceContract));
           dispatch(setNft(itemsListNew));
 

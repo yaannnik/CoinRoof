@@ -18,8 +18,8 @@ const CreateNFT = () => {
   const history = useHistory();
 
   const account = useSelector((state) => state.allNft.account);
-  const artTokenContract = useSelector(
-    (state) => state.allNft.artTokenContract
+  const baseContract = useSelector(
+    (state) => state.allNft.baseContract
   );
 
   const [selectedFile, setSelectedFile] = useState();
@@ -59,7 +59,7 @@ const CreateNFT = () => {
     }
 
     try {
-      const totalSupply = await artTokenContract.methods.totalSupply().call();
+      const totalSupply = await baseContract.methods.totalSupply().call();
       data.append("tokenId", Number(totalSupply) + 1);
 
       const response = await api.post("/tokens", data, {
@@ -80,7 +80,7 @@ const CreateNFT = () => {
 
   async function mint(tokenMetadataURL) {
     try {
-      const receipt = await artTokenContract.methods
+      const receipt = await baseContract.methods
         .mint(tokenMetadataURL)
         .send({ gas: 1000000, from: account });
       console.log(receipt);

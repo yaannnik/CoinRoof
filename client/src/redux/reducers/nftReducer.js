@@ -3,7 +3,7 @@ import { ActionTypes } from "../constants/action-types";
 const intialState = {
   nft: [],
   account: '',
-  artTokenContract: null,
+  baseContract: null,
   marketplaceContract: null
 };
 
@@ -17,7 +17,7 @@ export const nftReducer = (state = intialState, { type, payload }) => {
       return { ...state, account: payload };
     
     case ActionTypes.SET_TOKEN_COTRACT:
-      return { ...state, artTokenContract: payload }; 
+      return { ...state, baseContract: payload }; 
 
     case ActionTypes.SET_MARKET_CONTRACT:
       return { ...state, marketplaceContract: payload };
