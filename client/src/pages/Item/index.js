@@ -1,21 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, Link, useHistory } from "react-router-dom";
+
 import Button from "@material-ui/core/Button";
 import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
+
 import Web3 from "web3";
-import getWeb3 from "../../utils/getWeb3";
-import ArtToken from "../../contracts/ArtToken.json";
 import ArtMarketplace from "../../contracts/ArtMarketplace.json";
-import Address from "../../contracts/Address.json";
-
 import StickyFooter from "../../components/StickyFooter";
-
 import { selectedNft, removeSelectedNft } from "../../redux/actions/nftActions";
-
 import { useStyles } from "./styles.js";
 
 const Item = () => {
@@ -68,20 +64,12 @@ const Item = () => {
         console.log(itemList)
       }
       
-      // console.log("1");
-      // const marketAddress = ArtMarketplace.networks[1337].address;
-      // console.log(marketAddress);
-      // console.log("2");
       const web3 = new Web3("http://localhost:8545")
       // console.log("3");
       const networkId = await web3.eth.net.getId();
       const contractAddress = ArtMarketplace.networks[networkId].address;
       console.log(contractAddress);
       await artTokenContract.methods.approve(contractAddress, id).send({from: account});
-      // await artTokenContract.methods.setApprovalForAll("0x1b826918842a944e06c631b714c88ed3d213fb30", id).send({from: account});
-      // console.log(account);
-      // let transaction = await artTokenContract.setApprovalForAll(marketAddress, true);
-      // await transaction.wait();
       const receipt = await marketplaceContract.methods
         .putItemForSale(id, price)
         .send({ gas: 210000, from: account });
@@ -105,12 +93,6 @@ const Item = () => {
         .send({ gas: 210000, value: price, from: account });
       console.log(receipt);
       const id = receipt.events.itemSold.id; ///saleId
-      // alert("Error while buying!");
-      // console.log("1");
-      // const marketAddress = ArtMarketplace.networks[1337].address;
-      // console.log("2");
-      // await artTokenContract.methods.setApprovalForAll(marketAddress, tokenId);
-      // console.log("3");
       history.push('/');
       history.go(0);
     } catch (error) {
