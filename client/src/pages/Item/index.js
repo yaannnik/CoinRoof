@@ -92,7 +92,6 @@ const Item = () => {
         .buyItem(saleId)
         .send({ gas: 210000, value: price, from: account });
       console.log(receipt);
-      const id = receipt.events.itemSold.id; ///saleId
       history.push('/');
       history.go(0);
     } catch (error) {

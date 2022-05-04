@@ -15,7 +15,7 @@ contract Base is ERC721Enumerable{
   struct NFT {
     uint256 id;
     address creator;
-    string uri;
+    string url;
   }
 
   mapping(uint256 => NFT) public Items; //id => Item
@@ -26,7 +26,7 @@ contract Base is ERC721Enumerable{
     transaction_address = address_;
   }
 
-  function mint(string memory uri) public returns (uint256){
+  function mint(string memory url) public returns (uint256){
     Id_counter.increment();
     uint256 nft_id = Id_counter.current();
     _safeMint(msg.sender, nft_id);
@@ -35,7 +35,7 @@ contract Base is ERC721Enumerable{
     Items[nft_id] = NFT({
       id: nft_id, 
       creator: msg.sender,
-      uri: uri
+      url: url
     });
 
     return nft_id;

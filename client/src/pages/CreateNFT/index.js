@@ -44,7 +44,7 @@ const CreateNFT = () => {
     if(Number.isNaN(parseInt(price))) {
       price_ = "1"
     }
-    alert(price_)
+    // alert(price_)
 
     console.log("title: " + title);
 

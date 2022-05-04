@@ -15,44 +15,41 @@ contract Transaction {
   }
 
   ItemForSale[] public itemsForSale;
-  mapping(uint256 => bool) public activeItems; // tokenId => ativo?
-
-  event itemAddedForSale(uint256 id, uint256 tokenId, uint256 price);
-  event itemSold(uint256 id, address buyer, uint256 price);
+  mapping(uint256 => bool) public activeItems;
 
   constructor(Base _token) {
       token = _token;
   }
 
-  modifier OnlyItemOwner(uint256 tokenId){
-    require(token.ownerOf(tokenId) == msg.sender, "Sender does not own the item");
+  modifier RightOwner(uint256 tokenId){
+    require(token.ownerOf(tokenId) == msg.sender, "Wrong Owner");
     _;
   }
 
-  modifier HasTransferApproval(uint256 tokenId){
-    require(token.getApproved(tokenId) == address(this), "Market is not approved");
+  modifier TransactionApproved(uint256 tokenId){
+    require(token.getApproved(tokenId) == address(this), "Transaction not approved");
     _;
   }
 
   modifier ItemExists(uint256 id){
-    require(id < itemsForSale.length && itemsForSale[id].id == id, "Could not find item");
+    require(id < itemsForSale.length && itemsForSale[id].id == id, "Can not find item");
     _;
   }
 
-  modifier IsForSale(uint256 id){
-    require(!itemsForSale[id].isSold, "Item is already sold");
+  modifier ForSale(uint256 id){
+    require(!itemsForSale[id].isSold, "Item already sold");
     _;
   }
 
   function sellItem(uint256 tokenId, uint256 price) 
-    OnlyItemOwner(tokenId) 
-    HasTransferApproval(tokenId) 
+    RightOwner(tokenId) 
+    TransactionApproved(tokenId) 
     external 
     returns (uint256){
-      require(!activeItems[tokenId], "Item is already up for sale");
+      require(!activeItems[tokenId], "Item is on sale");
 
       uint256 newItemId = itemsForSale.length;
-      // uint256 newItemId = newId;
+
       itemsForSale.push(ItemForSale({
         id: newItemId,
         tokenId: tokenId,
@@ -63,25 +60,22 @@ contract Transaction {
       activeItems[tokenId] = true;
 
       assert(itemsForSale[newItemId].id == newItemId);
-      emit itemAddedForSale(newItemId, tokenId, price);
       return newItemId;
   }
 
   function buyItem(uint256 id) 
     ItemExists(id)
-    IsForSale(id)
-    HasTransferApproval(itemsForSale[id].tokenId)
+    ForSale(id)
+    TransactionApproved(itemsForSale[id].tokenId)
     payable 
     external {
-      require(msg.value >= itemsForSale[id].price, "Not enough funds sent");
+      require(msg.value >= itemsForSale[id].price, "No enough money");
       require(msg.sender != itemsForSale[id].seller);
 
       itemsForSale[id].isSold = true;
       activeItems[itemsForSale[id].tokenId] = false;
       token.safeTransferFrom(itemsForSale[id].seller, msg.sender, itemsForSale[id].tokenId);
       itemsForSale[id].seller.transfer(msg.value);
-
-      emit itemSold(id, msg.sender, itemsForSale[id].price);
     }
 
   function totalItemsForSale() external view returns(uint256) {
