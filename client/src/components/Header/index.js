@@ -6,8 +6,9 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import CssBaseline from "@material-ui/core/CssBaseline";
 // import {PersonIcon} from '@material-ui/icons-material/Person';
-import useScrollTrigger from "@material-ui/core/useScrollTrigger";
+// import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
+import CreditCardIcon from '@material-ui/icons/CreditCard';
 
 import {useStyles} from './styles.js'
 
@@ -32,8 +33,8 @@ const Header = () => {
         <Toolbar>
             <img  onClick={onClickImg} src={logo} alt="CoinRoof" className={classes.logo}/>
           <div className={classes.account}>
-            <AccountBalanceWalletIcon titleAccess="Wallet Address" className={classes.walletIcon}/>
-            <Typography variant="subtitle1">{account.slice(0,7)}...{account.slice(-4)}</Typography>
+            <CreditCardIcon titleAccess="Wallet Address" className={classes.walletIcon}/>
+            <Typography variant="subtitle1">Login as: {account.slice(0,7)}...{account.slice(-4)}</Typography>
           </div>
         </Toolbar>
       </AppBar>

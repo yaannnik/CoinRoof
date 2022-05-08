@@ -38,6 +38,12 @@ If you want to re-deploy your blockchain, use [redeploy.sh](./redeploy.sh).
 
 
 
+## Deployment on CCN
+
+To deploy our project on CCN, we need several changes in [truffle-config.js](./truffle-config.js). First, put your Alewallet private key into file [secrets.json](./secrets.json). Then in development, change the host to http://18.182.45.18 and port to 8765. Then, use `truffle migrate --network huygens` to deploy the project to CCN.
+
+
+
 ## Showcase
 
 In our CoinRoof, you can upload your NFT to show, sell and buy NFTs.
