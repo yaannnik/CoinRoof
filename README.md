@@ -1,6 +1,6 @@
 # CoinRoof: Market for NFT trading
 
-Presented by:[Jiashu Chen](jc5664@columbia.edu), [Jing Peng](jp4801@columbia.edu), [Xiaoyue Chen](xc2551@columbia.edu), [Yang Yu](), [Yi Yang](yy3089@columbia.edu), [Zikai Zhu](zz2765@columbia.edu)
+Presented by:[Jiashu Chen](https://github.com/Jiashu0326), [Jing Peng](https://github.com/paterlisia), [Xiaoyue Chen](xc2551@columbia.edu), [Yang Yu](https://github.com/peteryoungy), [Yi Yang](https://github.com/yaannnik), [Zikai Zhu](zz2765@columbia.edu)
 
 CoinRoof is a market place for users to trade their images as NFT.
 
