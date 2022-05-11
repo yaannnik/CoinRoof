@@ -82,7 +82,3 @@ contract Transaction {
     return itemsForSale.length;
   }
 }
-
-//TODO:
-// - don't support bidding
-// - the user can't withdraw the item
